@@ -24,28 +24,11 @@ namespace lista6
     public partial class MainWindow : Window
     {
         public static List<Person> m_oPersonList = new List<Person>();
+        public static List<string> Studenci_List = new List<string>();
 
         public MainWindow()
         {
             InitializeComponent();
-            InitBinding();
-        }
-
-        private void InitBinding()
-        {
-            try
-            {
-                
-            }
-            catch
-            {
-                MessageBox.Show("Brak pliku do załadowania!", "Uwaga", MessageBoxButton.OK);
-            }
-
-           
-
-
-            lstPersons.ItemsSource = m_oPersonList;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -70,7 +53,8 @@ namespace lista6
         //Load
         private void Button_Click5(object sender, RoutedEventArgs e)
         {
-            InitBinding();
+            lstPersons.ItemsSource = null;
+            lstPersons.ItemsSource = Studenci_List;
         }
 
         //Connect
@@ -86,14 +70,14 @@ namespace lista6
             SqlDataReader dataReader;
             String sql, Output = "";
 
-            sql = "Select TutorialID, TutorialName from demotb";
+            sql = "SELECT Id, FirstName, LastName, Age, Pesel, Obraz FROM Studenci";
             command = new SqlCommand(sql, cnn);
             dataReader = command.ExecuteReader();
             while (dataReader.Read())
             {
-                Output = Output + dataReader.GetValue(0) + " - " + dataReader.GetValue(1) + "\n";
+                Output = dataReader.GetValue(0) + "" + dataReader.GetValue(1) + "" + dataReader.GetValue(2) + " - " + dataReader.GetValue(3) + " - " + dataReader.GetValue(4) + " - " + dataReader.GetValue(5)+"\n";
+                Studenci_List.Add(Output);
             }
-            MessageBox.Show(Output);
             dataReader.Close();
             command.Dispose();
             cnn.Close();
@@ -145,6 +129,9 @@ namespace lista6
             e.Handled = new Regex("[^0-9]+").IsMatch(e.Text);
         }
 
-       
+        private void LstPersons_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
