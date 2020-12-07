@@ -5,8 +5,29 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:lista6"
         mc:Ignorable="d"
-        Title="Window2" Height="450" Width="800">
+        Title="Window2" Height="230" Width="600">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0">Imie</Label>
+        <Label Grid.Row="1">Nazwisko</Label>
+        <Label Grid.Row="2">Wiek</Label>
+        <Label Grid.Row="3">Pesel</Label>
+        <TextBox Grid.Row="0" Height="25" Width="200" Margin="50,5,10,5" Name="imie" PreviewTextInput="imie_preview"/>
+        <TextBox Grid.Row="1" Height="25" Width="200" Margin="50,5,10,5" Name="nazwisko" PreviewTextInput="nazwisko_preview"/>
+        <TextBox Grid.Row="2" Height="25" Width="200" Margin="50,5,10,5" Name="wiek" MaxLength="3" PreviewTextInput="wiek_previews"/>
+        <TextBox Grid.Row="3" Height="25" Width="200" Margin="50,5,10,5" Name="Pesel" MaxLength="11" PreviewTextInput="Pesel_Preview" />
+        <Button Grid.Row="4" Content="Dodaj" Click="Button_Click2" Height="30" Width="100"/>
+        <Image Grid.RowSpan="4" Grid.Column="1" Width="160" Name="Picture"></Image>
+        <Button Grid.Row="4" Grid.Column="1" Content="Wybierz" Height="30" Width="100" Click="Button_Click3"/>
     </Grid>
 </Window>
