@@ -75,7 +75,7 @@ namespace lista6
             dataReader = command.ExecuteReader();
             while (dataReader.Read())
             {
-                Output = dataReader.GetValue(0) + "" + dataReader.GetValue(1) + "" + dataReader.GetValue(2) + " - " + dataReader.GetValue(3) + " - " + dataReader.GetValue(4) + " - " + dataReader.GetValue(5)+"\n";
+                Output = dataReader.GetValue(0)+" "+dataReader.GetValue(1)+" "+dataReader.GetValue(2)+ " "+dataReader.GetValue(3)+" " +dataReader.GetValue(4)+" "+dataReader.GetValue(5)+"\n";
                 Studenci_List.Add(Output);
             }
             dataReader.Close();
@@ -129,9 +129,4 @@ namespace lista6
             e.Handled = new Regex("[^0-9]+").IsMatch(e.Text);
         }
 
-        private void LstPersons_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-    }
 }
