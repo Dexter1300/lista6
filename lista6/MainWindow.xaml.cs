@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -137,6 +138,27 @@ namespace lista6
         {
             Window4 win4 = new Window4(letter.Text);
             win4.Show();
+        }
+
+        private void Button_Click5(object sender, RoutedEventArgs e)
+        {
+            string connetionString;
+            SqlConnection cnn;
+            connetionString = @"Server=localhost\SQLEXPRESS;Database=master;Trusted_Connection=True";
+            cnn = new SqlConnection(connetionString);
+            SqlCommand command;
+            SqlDataReader dataReader;
+            cnn.Open();
+            String sql;
+            int id;
+
+            sql = "SELECT dbo.sAverageAge() FROM Studenci";
+            command = new SqlCommand(sql, cnn);
+            dataReader = command.ExecuteReader();
+
+            dataReader.Read();
+            id = dataReader.GetInt32(0);
+            MessageBox.Show("Średni wiek: " + id);
         }
     }
 }
