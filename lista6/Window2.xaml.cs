@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,7 @@ namespace lista6
     public partial class Window2 : Window
     {
         private string sciezka = "";
+        private int ID;
 
         public Window2()
         {
@@ -38,22 +40,27 @@ namespace lista6
             else
             {
                 MainWindow.m_oPersonList.Add(new MainWindow.Person() { StudentId = MainWindow.m_oPersonList.Count + 1, FirstName = imie.Text, LastName = nazwisko.Text, Age = Convert.ToInt16(wiek.Text), Pesel = Convert.ToInt64(Pesel.Text), obraz = sciezka });
+                ID = MainWindow.m_oPersonList.Count;
 
                 string connetionString;
                 SqlConnection cnn;
                 connetionString = @"Server=localhost\SQLEXPRESS;Database=master;Trusted_Connection=True";
                 cnn = new SqlConnection(connetionString);
+                SqlCommand command;
+                SqlDataReader dataReader;
                 cnn.Open();
 
-                SqlCommand command;
-                SqlDataAdapter adapter = new SqlDataAdapter();
-                String sql = "";
-
-                sql = "INSERT INTO Studenci (Id, FirstName, LastName, Age, Pesel, Obraz)VALUES(3, 'Michał', 'Wieczorek', 25, 90934349090, 'obraz')";
-                command = new SqlCommand(sql, cnn);
-                adapter.InsertCommand = new SqlCommand(sql, cnn);
-                adapter.InsertCommand.ExecuteNonQuery();
-
+                command = new SqlCommand("pDodanieStudenta", cnn);
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.Add("@Id", SqlDbType.Int).Value=ID;
+                command.Parameters.Add("@FirstName", SqlDbType.VarChar).Value=imie.Text;
+                command.Parameters.Add("@LastName", SqlDbType.VarChar).Value=nazwisko.Text;
+                command.Parameters.Add("@Age", SqlDbType.Int).Value=Convert.ToInt32(wiek.Text);
+                command.Parameters.Add("@Pesel", SqlDbType.BigInt).Value=Convert.ToInt64(Pesel.Text);
+                command.Parameters.Add("@Obraz", SqlDbType.VarChar).Value=sciezka;
+                
+                dataReader = command.ExecuteReader();
+                dataReader.Close();
                 command.Dispose();
                 cnn.Close();
                 MessageBox.Show("Dodano nową osobę");

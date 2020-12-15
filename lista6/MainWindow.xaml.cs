@@ -24,7 +24,6 @@ namespace lista6
     public partial class MainWindow : Window
     {
         public static List<Person> m_oPersonList = new List<Person>();
-        public static List<string> Studenci_List = new List<string>();
 
         public MainWindow()
         {
@@ -51,15 +50,10 @@ namespace lista6
         }
 
         //Load
-        private void Button_Click5(object sender, RoutedEventArgs e)
-        {
-            lstPersons.ItemsSource = null;
-            lstPersons.ItemsSource = Studenci_List;
-        }
-
-        //Connect
         private void Button_Click6(object sender, RoutedEventArgs e)
         {
+            m_oPersonList.Clear();
+            lstPersons.ItemsSource = null;
             string connetionString;
             SqlConnection cnn;
             connetionString = @"Server=localhost\SQLEXPRESS;Database=master;Trusted_Connection=True";
@@ -68,16 +62,26 @@ namespace lista6
 
             SqlCommand command;
             SqlDataReader dataReader;
-            String sql, Output = "";
+            String sql,  imie = "", nazwisko = "", obraz="";
+            int id, wiek;
+            long pesel;
 
             sql = "SELECT Id, FirstName, LastName, Age, Pesel, Obraz FROM Studenci";
+
             command = new SqlCommand(sql, cnn);
+            
             dataReader = command.ExecuteReader();
             while (dataReader.Read())
             {
-                Output = dataReader.GetValue(0)+" "+dataReader.GetValue(1)+" "+dataReader.GetValue(2)+ " "+dataReader.GetValue(3)+" " +dataReader.GetValue(4)+" "+dataReader.GetValue(5)+"\n";
-                Studenci_List.Add(Output);
+                id = dataReader.GetInt32(0);
+                imie = dataReader.GetString(1);
+                nazwisko = dataReader.GetString(2);
+                wiek = dataReader.GetInt32(3);
+                obraz = dataReader.GetString(5);
+                pesel = dataReader.GetInt64(4);
+                m_oPersonList.Add(new Person(id, imie, nazwisko, wiek, pesel, obraz));
             }
+            lstPersons.ItemsSource = m_oPersonList;
             dataReader.Close();
             command.Dispose();
             cnn.Close();
@@ -129,4 +133,10 @@ namespace lista6
             e.Handled = new Regex("[^0-9]+").IsMatch(e.Text);
         }
 
+        private void Button_Click4(object sender, RoutedEventArgs e)
+        {
+            Window4 win4 = new Window4(letter.Text);
+            win4.Show();
+        }
+    }
 }

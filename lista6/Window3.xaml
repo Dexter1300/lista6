@@ -7,6 +7,29 @@
         mc:Ignorable="d"
         Title="Window3" Height="450" Width="800">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0">Imie</Label>
+        <Label Grid.Row="1">Nazwisko</Label>
+        <Label Grid.Row="2">Wiek</Label>
+        <Label Grid.Row="3">Pesel</Label>
+        <TextBox Grid.Row="0" Height="25" Width="200" Margin="50,5,10,5" Name="imie" IsEnabled="False" PreviewTextInput="imie_preview"/>
+        <TextBox Grid.Row="1" Height="25" Width="200" Margin="50,5,10,5" Name="nazwisko" IsEnabled="False" PreviewTextInput="Nazwisko_PreviewTextInput"/>
+        <TextBox Grid.Row="2" Height="25" Width="200" Margin="50,5,10,5" Name="wiek" IsEnabled="False" PreviewTextInput="Wiek_PreviewTextInput" MaxLength="3"/>
+        <TextBox Grid.Row="3" Height="25" Width="200" Margin="50,5,10,5" Name="Pesel" IsEnabled="False" PreviewTextInput="Pesel_PreviewTextInput" MaxLength="11"/>
+        <Button Grid.Row="4" Content="Edytuj" Click="Button_Click" Height="25" Width="50" Margin="63,30,283,27"/>
+        <Button Grid.Row="4" Content="Zapisz" Click="Button_Click2" Height="25" Width="50" Margin="244,30,102,27"/>
+        <Button Grid.Row="4" Content="Zapisz w Bazie" Click="Button_Click4" Height="25" Margin="131,30,171,27"/>
+        <Image Grid.RowSpan="4" Grid.Column="1" Width="160" Name="Picture"></Image>
+        <Button Grid.Row="4" Grid.Column="1" Content="Wybierz" Height="25" Width="50" IsEnabled="False" Name="obrazek" Click="Button_Click3"/>
     </Grid>
 </Window>
