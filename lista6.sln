@@ -7,8 +7,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lista6", "lista6\lista6.csp
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{58BD2B9E-719A-4559-9799-1A99F81D4CA3}"
 	ProjectSection(SolutionItems) = preProject
+		SQL_skalarna.sql = SQL_skalarna.sql
+		SQL_tabelaryczna.sql = SQL_tabelaryczna.sql
+		SQL_triggers.sql = SQL_triggers.sql
 		SQLQuery2.sql = SQLQuery2.sql
 		SqlQuery_1.sql = SqlQuery_1.sql
+		SQLQuery_widok.sql = SQLQuery_widok.sql
 	EndProjectSection
 EndProject
 Global

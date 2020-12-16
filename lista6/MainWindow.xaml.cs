@@ -166,5 +166,11 @@ namespace lista6
             Window5 win5 = new Window5();
             win5.Show();
         }
+
+        private void Button_Click8(object sender, RoutedEventArgs e)
+        {
+            Window6 win6 = new Window6();
+            win6.Show();
+        }
     }
 }
