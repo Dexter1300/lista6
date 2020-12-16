@@ -1,0 +1,25 @@
+GO
+CREATE TABLE student_log
+(
+id INT IDENTITY NOT NULL,
+action_type VARCHAR(40),
+data_zmiany VARCHAR(60)
+);
+
+GO
+CREATE TRIGGER Logs_UPDATE
+ON Studenci
+AFTER UPDATE
+AS
+BEGIN
+	INSERT INTO student_log(action_type, data_zmiany)VALUES('UPDATE', LEFT(SYSDATETIME(),19))
+END;
+
+GO
+CREATE TRIGGER Logs_INSERT
+ON Studenci
+AFTER INSERT
+AS
+BEGIN
+	INSERT INTO student_log(action_type, data_zmiany)VALUES('INSERT',LEFT(SYSDATETIME(),19))
+END;

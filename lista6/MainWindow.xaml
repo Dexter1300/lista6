@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:lista6"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="400">
+        Title="MainWindow" Height="600" Width="450">
     <Grid RenderTransformOrigin="0.503,0.566">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -17,6 +17,7 @@
         <Button Content="Refresh" Grid.Row="0" Click="Button_Click3" Height="30" Width="100" Margin="96,85,96,15"/>
         <Button Content="Wyświetl" Grid.Row="0" Click="Button_Click2" Height="30" Width="100"/>
         <Button Content="Load" Grid.Row="0" Click="Button_Click6" Height="30" Width="100" Margin="96,160,96,20"/>
+        <Button Content="Logi" Grid.Row="0" Click="Button_Click7" Height="30" Width="100" Margin="146,232,146,22"/>
         <TextBox Grid.Row="0" Height="25" Width="25" Margin="140,5,10,5" Name="id" PreviewTextInput="Id_PreviewTextInput"/>
         <TextBox Grid.Row="0" Height="25" Width="25" Margin="250,20,116,166" Name="letter"/>
         <ListView Name="lstPersons" Grid.Row="1">

@@ -160,5 +160,11 @@ namespace lista6
             id = dataReader.GetInt32(0);
             MessageBox.Show("Średni wiek: " + id);
         }
+
+        private void Button_Click7(object sender, RoutedEventArgs e)
+        {
+            Window5 win5 = new Window5();
+            win5.Show();
+        }
     }
 }
